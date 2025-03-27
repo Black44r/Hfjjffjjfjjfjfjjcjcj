@@ -15,7 +15,8 @@ import requests
 import threading
 import gc
 from concurrent.futures import ThreadPoolExecutor
-import random
+import hashlib
+import itertools
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, InputMediaPhoto, InputFile
 from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, CallbackContext, MessageHandler, Filters
 from bip_utils import (
@@ -176,7 +177,22 @@ def clear_logs(update: Update, context: CallbackContext) -> None:
 
 # ------------------ Wallet & Blockchain Functions ------------------ #
 def bip():
-    return Bip39MnemonicGenerator().FromWordsNumber(Bip39WordsNum.WORDS_NUM_12)
+    # Custom implementation using english.txt and itertools
+    with open("english.txt", "r") as f:
+        wordlist = [line.strip() for line in f if line.strip()]
+    if len(wordlist) != 2048:
+        raise ValueError("Wordlist must contain exactly 2048 words.")
+    # Generate 128 bits of entropy and compute its SHA-256 hash for checksum
+    entropy = random.getrandbits(128)
+    entropy_bytes = entropy.to_bytes(16, "big")
+    hash_bytes = hashlib.sha256(entropy_bytes).digest()
+    checksum = hash_bytes[0] >> 4  # first 4 bits of the hash
+    # Combine entropy and checksum to form a 132-bit number
+    combined = (entropy << 4) | checksum
+    # Use itertools to extract 12 indices (each 11 bits long)
+    indices = list(itertools.islice(((combined >> (11 * i)) & ((1 << 11) - 1) for i in reversed(range(12))), 12))
+    # Map indices to words and join them to form the mnemonic phrase
+    return " ".join(wordlist[i] for i in indices)
 
 def bip44_wallet_from_seed(seed, coin_type):
     seed_bytes = Bip39SeedGenerator(seed).Generate()
