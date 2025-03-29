@@ -2576,6 +2576,7 @@ def key_price_callback(update: Update, context: CallbackContext) -> None:
     "   ╰ ⚡ *Booster Mode:* 🟢 *True*\n\n"
     "💎 **Unlock premium features & stay ahead of the software!** 💎\n"
     "🔗 **Get your key now:** @CoinScannerBuyBot"
+    "**Admin:** @emran080"
 )
     query.message.reply_text(message, parse_mode=ParseMode.MARKDOWN)
 
