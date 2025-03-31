@@ -2879,7 +2879,7 @@ def about_callback(update: Update, context: CallbackContext) -> None:
         f"  2️⃣ Select the blockchain network you want to scan.\n"
         f"  3️⃣ Sit back and let the bot do the work for you!\n\n"
         f"```"
-        "💬 Need help or have questions? Send massage to @emran080 to learn more about the bot's features.\n\n"
+        "💬 Need help or have questions? Send massage admin to learn more about the bot's features.\n\n"
         "Happy scanning! 🤑"
     )
     
