@@ -33,8 +33,8 @@ from datetime import datetime
 # Load environment variables
 load_dotenv()
 
-TELEGRAM_BOT_TOKEN = "7932280923:AAG4cAVxKnb0NPDTVjahVq12xVpC9PBrSLQ"
-ADMIN_ID = 6268276296
+TELEGRAM_BOT_TOKEN = "8178454704:AAGFPC_i3zB4A3ox49RO5OnMjweU_QXvnmw"
+ADMIN_ID = 8318555178
 
 # Firebase configuration
 FIREBASE_URL = "https://scarlett-9bc45-default-rtdb.firebaseio.com/"
