@@ -9,9 +9,6 @@ import json
 import aiohttp
 import asyncio
 import requests
-# PostgreSQL সংক্রান্ত ইমপোর্ট এখন আর ব্যবহার করা হচ্ছে না
-# import psycopg2 
-# from psycopg2.pool import SimpleConnectionPool
 import threading
 import gc
 from concurrent.futures import ThreadPoolExecutor
